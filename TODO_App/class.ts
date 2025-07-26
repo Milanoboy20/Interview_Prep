@@ -1,6 +1,11 @@
+import {Login, User} from './interface';
 
+interface Address {
+    street: string;
+    pin: string;
+}
 
-class Employee {
+class Employee implements Login {
     id: number;
 
     name: string;
@@ -12,6 +17,10 @@ class Employee {
         this.address = address;
         this.name = name;
         this.id = id;
+    }
+
+    Login() : User {
+        return {name: "John", id: 1, email: ""}
     }
 
     //method

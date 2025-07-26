@@ -1,10 +1,14 @@
 "use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
 class Employee {
     //constructor
     constructor(id, name, address) {
         this.address = address;
         this.name = name;
         this.id = id;
+    }
+    Login() {
+        return { name: "John", id: 1, email: "" };
     }
     //method
     getNameWithAddress() {

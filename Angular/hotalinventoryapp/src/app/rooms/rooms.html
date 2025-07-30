@@ -5,36 +5,29 @@
 
 <div [hidden]="hideRooms">
     <!-- property binding -->
-number of rooms:
-<div [innerText]="noOfRooms"></div>
+    Number of rooms:
+    @if (rooms.availableRooms > 0) {
+        <div [ngStyle]="{color: 'green'}" 
+        [innerText]="noOfRooms"></div>
+    } @else {
+        <div [ngStyle]="{color: 'red'}" 
+        [innerText]="noOfRooms"></div>
+    }
 </div>
 
+<!-- {{roomList | json}} -->
 <!-- {{ rooms.availableRooms ?? 'No rooms' }} -->
+
+@if (selectedRoom) {
+    <div>{{ selectedRoom | json}}</div>
+}
 
 @if(rooms.availableRooms > 0) {
 <div>
-    Rooms List
-    <!-- {{roomList}} -->
-     <table>
-        <tr>
-            <th>Room Number</th>
-            <th>Room Type</th>
-            <th>Room Price</th>
-            <th>Room Amenities</th>
-            <th>Checkin Time</th>
-        </tr>
-        @for (room of roomList; track room) {
-            <tr>
-                <td>{{ room.roomNumber}}</td>
-                <td>{{ room.roomType}}</td>
-                <td>{{ room.price}}</td>
-                <td>{{ room.amenities}}</td>
-                <td>{{ room.checkinTime}}</td>
-            </tr>
-        }
-     </table>
+    <hinv-rooms-list [rooms]="roomList"
+    (selectedRoom)="selectRoom($event)"></hinv-rooms-list>
 </div>
 }
 
 <!-- event binding -->
- <button (click)="toggle()">Toggle</button>
+<button (click)="toggle()">Toggle</button>

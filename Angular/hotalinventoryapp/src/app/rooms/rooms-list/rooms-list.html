@@ -1,4 +1,4 @@
-Rooms List
+<h2> {{title}}</h2>
     <!-- {{roomList}} -->
     <table class="table">
         <tbody>
@@ -14,7 +14,7 @@ Rooms List
             <th>Select Room</th>
         </tr>
         
-        @for (room of rooms | slice: 0:3; track room; let e = $even; let o = $odd; let i = $index) { 
+        @for (room of rooms; track room; let e = $even; let o = $odd; let i = $index) { 
         <tr [ngClass]="e ? 'even' : 'odd'">
             <td>{{ i | percent}}</td>
             <td>{{ e ? "Even" : "Odd" }}</td>

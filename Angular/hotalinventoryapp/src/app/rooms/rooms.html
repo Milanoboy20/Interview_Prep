@@ -1,7 +1,8 @@
 <p>rooms works!</p>
 
 <!-- interpolation binding syntax -->
-<h1>Welcome to the {{hotelName}}</h1>
+<!-- <h1>Welcome to the {{hotelName}}</h1> -->
+ <hinv-header></hinv-header>
 
 <div [hidden]="hideRooms">
     <!-- property binding -->
@@ -22,9 +23,13 @@
     <div>{{ selectedRoom | json}}</div>
 }
 
-@if(rooms.availableRooms > 0) {
 <div>
-    <hinv-rooms-list [rooms]="roomList"
+    <button (click)="addRoom()">Add Room</button>
+</div>
+
+@if(hideRooms) {
+<div>
+    <hinv-rooms-list [rooms]="roomList" [title]="title"
     (selectedRoom)="selectRoom($event)"></hinv-rooms-list>
 </div>
 }

@@ -62,7 +62,8 @@
               "buildTarget": "hotalinventoryapp:build:production"
             },
             "development": {
-              "buildTarget": "hotalinventoryapp:build:development"
+              "buildTarget": "hotalinventoryapp:build:development",
+              "proxyConfig": "src/proxy.config.json"
             }
           },
           "defaultConfiguration": "development"

@@ -1,0 +1,34 @@
+<h2>{{title}}</h2>
+
+<!-- <section> -->
+<div class="row justify-content-center">
+    <div class="col">
+        <table class="table table-hover table-responsive">
+            <thead class="table-active">
+                <tr>
+                    <th>ID</th>
+                    <th>Owner</th>
+                    <th>Description</th>
+                    <th>Status</th>
+                    <th>Modify</th>
+                </tr>
+            </thead>
+            <tbody>
+                @for (task of tasks; track task) {
+                <tr>
+                    <td>{{task.taskId}}</td>
+                    <td>{{task.owner}}</td>
+                    <td>{{task.description}}</td>
+                    <td>{{task.completed ? 'Completed' : 'In progress'}}</td>
+                    <td>
+                        <button class="btn btn-outline-warning mr-4" (click)="editTask(task)">Update</button>
+                        <button class="btn btn-outline-danger" (click)="deleteTask(task.taskId)">Delete</button>
+                        <button class="btn btn-outline-success" (click)="completeTask(task.taskId)">Complete Task</button>
+                    </td>
+                </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
+<!-- </section> -->

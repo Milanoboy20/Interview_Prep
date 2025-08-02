@@ -6,6 +6,7 @@ import { Employee } from '../employee/employee';
   imports: [],
   templateUrl: './container.html',
   styleUrl: './container.css'
+  // providers: []
 })
 
 

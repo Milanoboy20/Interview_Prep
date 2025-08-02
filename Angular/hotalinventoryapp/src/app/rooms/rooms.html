@@ -27,6 +27,10 @@
     <button (click)="addRoom()">Add Room</button>
 </div>
 
+<!-- <h1>
+    Number of Rooms: {{roomsCount$ | async}}
+</h1> -->
+
 @if(hideRooms) {
 <div>
     <hinv-rooms-list [rooms]="roomList" [title]="title"
@@ -36,3 +40,9 @@
 
 <!-- event binding -->
 <button (click)="toggle()">Toggle</button>
+
+<button (click)="editRoom()">Edit Room</button>
+
+<button (click)="deleteRoom()">Delete Room</button>
+
+<h1>{{totalBytes}} Loaded</h1>

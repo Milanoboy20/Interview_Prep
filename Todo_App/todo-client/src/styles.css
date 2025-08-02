@@ -1,0 +1,15 @@
+/* You can add global styles to this file, and also import other style files */
+/* @import 'C:/Users/sadat/OneDrive/Desktop/HTD_Training/Interview_Prep/Interview_Prep/Angular/TODO_APP/node_modules/bootstrap/dist/css/bootstrap.min.css'; */
+
+@import 'C:/Users/sadat/OneDrive/Desktop/HTD_Training/Interview_Prep/Interview_Prep/Todo_App/todo-client/node_modules/bootstrap/dist/css/bootstrap.min.css';
+
+/* html, body {
+    margin:  0;
+    padding: 0;
+} */
+
+/* * {
+    outline: none;
+} */
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }

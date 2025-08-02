@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Self } from '@angular/core';
 import { RoomsService } from '../rooms/services/rooms';
 
 @Component({
@@ -6,13 +6,14 @@ import { RoomsService } from '../rooms/services/rooms';
   imports: [],
   templateUrl: './employee.html',
   styleUrl: './employee.css',
-  providers: [RoomsService]
+  // providers: [RoomsService]
 })
+
 export class Employee {
 
   empName: string = 'John';
 
-  constructor(private roomsService : RoomsService) {
+  // constructor(@Self() private roomsService : RoomsService) {
 
-  }
+  // }
 }

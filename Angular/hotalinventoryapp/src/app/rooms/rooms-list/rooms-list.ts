@@ -1,11 +1,12 @@
 import { CommonModule } from '@angular/common';
 import { ChangeDetectionStrategy, Component, DoCheck, EventEmitter, Input, OnChanges, OnDestroy, Output, SimpleChanges } from '@angular/core';
 import { RoomList } from '../roomsinterface';
+import { RouterLink } from '@angular/router';
 
 
 @Component({
   selector: 'hinv-rooms-list',
-  imports: [CommonModule],
+  imports: [CommonModule, RouterLink],
   templateUrl: './rooms-list.html',
   styleUrl: './rooms-list.css',
   changeDetection: ChangeDetectionStrategy.OnPush
@@ -13,7 +14,7 @@ import { RoomList } from '../roomsinterface';
 export class RoomsList implements DoCheck, OnDestroy{
 
   // decorator to input rooms list 
-  @Input() rooms: RoomList[] = [];
+  @Input() rooms: RoomList[] | null = [];
 
   @Input() title: string = '';
 

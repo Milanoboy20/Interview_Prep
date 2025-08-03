@@ -1,62 +1,76 @@
-import { Component, Input, input } from '@angular/core';
+import { ChangeDetectionStrategy, ChangeDetectorRef, Component, Injectable, Input, input, OnInit, signal } from '@angular/core';
 import { Task } from './taskinterface';
 import { TasksList } from "./tasks-list/tasks-list";
 import { Taskservices } from './services/taskservices';
+
 
 @Component({
   selector: 'app-tasks',
   imports: [TasksList],
   templateUrl: './tasks.html',
-  styleUrl: './tasks.css'
+  styleUrl: './tasks.css',
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class Tasks {
+
+@Injectable({
+  providedIn: 'root'
+})
+
+export class Tasks implements OnInit {
   message = input('Hello!');
 
   title: string = 'Tasks List';
 
-  taskList: Task[] = [
-    {
-      taskId: '1',
-      owner: 'Abdul Samad',
-      description: 'Grocery shopping!',
-      completed: false
-    }
-  ];
+  task !: Task;
+
+  taskList: Task[] = [];
+
+  completedTasks: Task[] = [];
 
 
-  newTask: string = '';
+  constructor(private taskService: Taskservices, private change: ChangeDetectorRef) { }
 
-  constructor(private taskService: Taskservices) { }
-
-  addTask() {
-    // this.taskList.push(task);
-    const task: Task = {
-      taskId: `${this.getTaskId()}`,
-      owner: 'Mallam',
-      description: 'New Task',
-      completed: false
-    }
-    this.taskList = [...this.taskList, task];
+  ngOnInit(): void {
+    this.taskList = this.taskService.getTasks();
+    this.completedTasks = this.taskService.getCompletedTasks();
   }
 
-  editTask(task: Task) {
-    this.taskList.map(t => {
-      if(t.taskId === task.taskId){
-        t.owner = task.owner;
-        t.description = task.description;
-        t.completed = task.completed;
-      }
-    });
+  getTasks() {
+    return this.taskList;
   }
 
-  deleteTask(taskId: string) {
-    const newTaskList = this.taskList.filter(t => t.taskId !== taskId);
-    this.taskList = newTaskList;
+  addTask(task: Task) {
+    this.taskService.addTask(task);
   }
 
-  getTaskId() {
-    this.taskList.sort((a,b) => parseInt(a.taskId) - parseInt(b.taskId));
-    return 1 + parseInt(this.taskList[this.taskList.length - 1].taskId);
+  editTask(id: number, task: Task) {
+    this.taskService.editTask(id, task);
+    // this.ngOnInit();
   }
+
+  deleteTask(taskId: number) {
+    this.taskService.deleteTask(taskId);
+    this.ngOnInit();
+  }
+
+  deleteCompletedTask(taskId: number) {
+    this.taskService.deleteCompleted(taskId);
+    this.ngOnInit();
+  }
+
+  completeTask(taskId: number) {
+    this.taskService.completeTask(taskId);
+    this.ngOnInit();
+  }
+
+  getTaskById(taskId: number) {
+    return this.taskService.getById(taskId);
+  }
+
+  selectedTask(task: Task) {
+    console.log(task);
+    this.task = task;
+  }
+
 
 }

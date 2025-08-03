@@ -1,8 +1,9 @@
 
 
 export interface Task {
-    taskId: string;
+    taskId: number;
     owner: string;
+    taskType: string;
     description: string;
     completed: boolean;
 }

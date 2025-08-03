@@ -1,9 +1,30 @@
 
-<form>
-    <div class="form-group">
-        <input class="form-control" type="text" name="owner">
-    </div>
-    <div class="form-group">
-        <input class="form-control" type="text" name="description">
-    </div>
-</form>
+<!-- {{taskForm.valid| json}} -->
+<!-- {{success}} -->
+<h1 class="text-center">{{isEditMode ? 'Update Task' : 'Add Task'}}</h1>
+
+<section>
+    <form [formGroup]="form"  (ngSubmit)="submitTask()" >
+        <fieldset class="form-group">
+            <label>Task Owner</label>
+            <input required class="form-control" type="text" formControlName="owner" [placeholder]="['name']">
+        </fieldset>
+        <fieldset class="form-group">
+            <label>Task Type</label>
+            <input class="form-control" type="text" formControlName="taskType">
+        </fieldset>
+        <fieldset class="form-group">
+            <label>Description</label>
+            <input class="form-control" type="text" formControlName="description">
+        </fieldset>
+        <fieldset>
+            <div class="text-center">
+                <button type="submit" class="btn btn-outline-success mt-4" 
+                [disabled]="form.invalid"
+                >{{isEditMode ? 'Update Task' : 'Add Task'}}</button>
+                <button class="btn btn-outline-danger mt-4" routerLink="/tasks" 
+                type="button">Cancel</button>
+            </div>
+        </fieldset>
+    </form>
+</section>

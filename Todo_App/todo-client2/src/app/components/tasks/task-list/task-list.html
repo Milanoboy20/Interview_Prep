@@ -1,0 +1,46 @@
+<h1 class="text-center">{{ title }}</h1>
+
+<section>
+    <div class="row justify-content-center">
+        <div class="col">
+            <table class="table table-hover table-responsive">
+                <thead class="table-active">
+                    <tr>
+                        <th>ID</th>
+                        <th>Owner</th>
+                        <th>Task Type</th>
+                        <th>Description</th>
+                        <th>Status</th>
+                        <th>Modify</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @for (task of tasks; track task.taskId) {
+                    <tr>
+                        <td>{{task.taskId}}</td>
+                        <td>{{`${user.firstname} ${user.lastname}`}}</td>
+                        <td>{{task.taskType}}</td>
+                        <td>{{task.description}}</td>
+                        <td>{{task.complete ? 'Completed' : 'In progress'}}</td>
+                        <td>
+                            @if (title !== 'Completed Tasks') {
+                            <button class="btn btn-outline-warning mr-4" (click)="selectTask(task)"
+                                [routerLink]="['/tasks/edit', task.taskId]">Update</button>
+                            <button class="btn btn-outline-danger" (click)="deleteTask(task.taskId)">Delete</button>
+                            <button class="btn btn-outline-success" (click)="completeTask(task.taskId, task)">Complete
+                                Task</button>
+                            }
+                            @else {
+                            <button class="btn btn-outline-danger"
+                                (click)="deleteTask(task.taskId)">Delete</button>
+                            }
+
+                        </td>
+                    </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+</section>

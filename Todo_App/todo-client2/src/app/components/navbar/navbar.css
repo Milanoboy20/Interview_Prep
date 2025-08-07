@@ -1,0 +1,16 @@
+nav {
+    display: flex;
+    justify-content: space-around;
+    background-color: aquamarine;
+}
+
+nav a {
+    text-decoration: none;
+    color: black;
+    transition: 2s;
+    padding: 0.5% 0;
+}
+
+nav a:hover{
+    color: #767676;
+}
